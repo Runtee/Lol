@@ -1,0 +1,97 @@
+Exercise 1: Basic Class Creation
+Task: Create a Python class named Book that has two attributes: title and author. Then create a method within this class called display_info that prints out a sentence including the title and the author in a human-readable format.
+
+Expected Output: When creating an instance of Book with the title "To Kill a Mockingbird" and author "Harper Lee", calling the display_info method should output: "To Kill a Mockingbird by Harper Lee".
+
+Exercise 2: Using Constructors
+Task: Expand on the Book class by adding a constructor method (_init_) that initializes the title and author attributes when a Book instance is created. Encourage students to create multiple instances of Book and use the display_info method to print out book information.
+
+Exercise 3: Encapsulation and Abstraction
+Task: Create a Circle class with a private attribute radius and a method to set the radius called set_radius. Ensure that the radius cannot be set to a negative number. Add another method called area that calculates and returns the area of the circle. Use the math.pi constant for π.
+
+Expected Learning Outcome: Students should understand the concept of making an attribute private and controlling access to it via a public method, encapsulating the logic to prevent invalid states.
+
+Exercise 4: Inheritance and Method Overriding
+Task: Ask students to create a class Vehicle with attributes make and year and a method description that returns a string describing the vehicle. Then, create two subclasses, Car and Bike, which inherit from Vehicle but override the description method to include "Car" and "Bike" in their descriptions, respectively.
+
+Exercise 5: Implementing Polymorphism
+Task: Introduce an abstract class Shape with an abstract method area. Create two subclasses, Rectangle and Circle, that implement the area method. Write a function print_area that takes a shape instance and prints its area.
+
+Expected Learning Outcome: This exercise aims to demonstrate polymorphism where the same interface (area method) is implemented in different ways by different classes.
+
+Exercise 6: Comprehensive Project
+Task: Design a small system that models a simple e-commerce platform with classes for Product, Customer, and Order. Product should have name and price, Customer should have name and email, and Order should link Customer and a list of Product objects, calculating the total price.
+
+Expected Learning Outcome: This exercise integrates multiple OOP concepts, encouraging students to think about how objects interact in a system and practice designing classes that interact with each other.
+
+
+
+
+
+import random
+# account_number = ''.join([str(random.randint(0, 9)) for _ in range(10)])
+# a = []
+# for i in range(10):
+#     b = str(random.randint(0,9))
+#     print(b)
+#     a.append(b)
+# print(a)
+# print("".join(a))
+
+print(random.randint(1000000000, 9999999999))
+
+class Account:
+    def get_account_number(self):
+        a = []
+        for _ in range(10):
+            a.append(str(random.randint(0,9)))
+        return "".join(a)
+
+    def __init__(self, name, age, balance):
+        self.name = name
+        self.age = age
+        self.balance = balance
+        self.account_number = self.get_account_number()
+
+    def withdraw(self, amount):
+        if amount > self.balance:
+            return f"you balance {self.balance} is less than the amount you want to withdraw"
+        else:
+            self.balance -=amount
+            return f"you have withdraw {amount}. your balance is {self.balance}"
+    
+    def return_account_info(self):
+        return {"Account Name": self.name, "Account Number": self.account_number, "Age": self.age, "Account Balance": self.balance} 
+    
+class Saving(Account):
+    def interest(self, rate):
+        percent = rate/100
+        self.balance += self.balance * percent 
+        return (f"interest of {self.balance * percent} has been added to you account\n new balance is {self.balance}")
+    
+    def get_account_number(self):
+        a = []
+        for _ in range(5):
+            a.append(str(random.randint(0,9)))
+        return "".join(a)
+    
+
+emeka = Saving("emake", 20, 3000000)
+print(emeka.return_account_info())
+print(emeka.interest(20))
+
+
+# nonso = Account("nonso", 15, 200000000) 
+
+# ada = Account("ada", 20, 2000)
+# obi = Account("obi", 50, 30000)
+
+# print(nonso.return_account_info())
+# print(ada.return_account_info())
+# print(obi.return_account_info())
+# print("---------------------withdraw-----------")
+# print(nonso.withdraw(50000))
+# print(ada.withdraw(50000))
+# print('-----------------------------------')
+# print(nonso.return_account_info())
+# print(ada.return_account_info())
